@@ -1,0 +1,19 @@
+# Python
+__pycache__/
+*.py[cod]
+*.log
+
+# Virtual env
+.venv/
+env/
+venv/
+
+# IDE
+.idea/
+*.iml
+
+# OS
+.DS_Store
+
+# pytest
+.cache/
