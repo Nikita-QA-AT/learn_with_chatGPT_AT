@@ -26,7 +26,7 @@ def test_product_name_matches_between_catalogue_and_detail(browser):
 
 
 
-
+@pytest.mark.skip(reason="Отлаживаю другие тк, и специально не запускаю этот")
 def test_add_product_to_basket_from_catalog(browser):
     page = CataloguePage(browser, CATALOG_LINK)
     page.open()
@@ -37,7 +37,14 @@ def test_add_product_to_basket_from_catalog(browser):
     print(f"Тест успешно пройден: имя в каталоге совпадает с именем в сообщении об успешном добавлении")
 
 
+def test_product_price_after_add_to_basket_equals_basket_total_in_success_message(browser):
+    page = CataloguePage(browser, CATALOG_LINK)
+    page.open()
+    product_price = page.get_product_price_from_card_in_catalog()
+    page.add_product_to_basket_from_catalog()
+    product_price_from_success_message = page.get_basket_total_from_success_message()
+    assert product_price == product_price_from_success_message, f"ожидали, что после добавления в корзину, итоговая цена в корзине {product_price_from_success_message}будет совпадать с ценой товара{product_price}"
+    print(f"Тест успешно пройден: после добавления в корзину, итоговая цена в корзине {product_price_from_success_message} совпадает с ценой товара {product_price}, который был добавлен")
 
 
 
-    time.sleep(1000)

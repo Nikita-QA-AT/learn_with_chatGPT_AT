@@ -25,6 +25,17 @@ class CataloguePage(BasePage):
 
 
 
+    def get_product_price_from_card_in_catalog(self, index=3):
+        cards = self.safe_find_all(CataloguePageLocators.PRODUCT_CARD, description="Карточки всех товаров")
+        card = cards[index]
+        product_price = self.safe_get_text_inside(card, CataloguePageLocators.PRODUCT_PRICE, description=f"цена товара под индексом {index}")
+        return product_price
+
+
+
+
+
+
     def go_to_product_page(self, index=3):
         cards = self.safe_find_all(CataloguePageLocators.PRODUCT_CARD, description="Карточки всех товаров")
         card = cards[index]
@@ -38,6 +49,10 @@ class CataloguePage(BasePage):
 
     def get_product_name_from_success_message(self):
         return self.safe_get_text(CataloguePageLocators.SUCCESS_MESSAGE_PRODUCT_NAME, description="имя товара в сообщении об успешном добавлении")
+
+    def get_basket_total_from_success_message(self):
+        return self.safe_get_text(CataloguePageLocators.BASKET_TOTAL, description="итоговая сумма в корзине после добавления")
+
 
 
 
