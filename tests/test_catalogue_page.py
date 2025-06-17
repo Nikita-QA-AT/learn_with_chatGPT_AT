@@ -48,3 +48,4 @@ def test_product_price_after_add_to_basket_equals_basket_total_in_success_messag
 
 
 
+проверка подтягивания изменений
